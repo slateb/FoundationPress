@@ -15,10 +15,10 @@
 		 endif; // end have_posts() check ?>
 
 
-	<?php if ( function_exists( 'foundationpress_pagination' ) ) { foundationpress_pagination(); } else if ( is_paged() ) { ?>
+	<?php if ( function_exists( 'starterslab_pagination' ) ) { starterslab_pagination(); } else if ( is_paged() ) { ?>
 		<nav id="post-nav">
-			<div class="post-previous"><?php next_posts_link( __( '&larr; Older posts', 'FoundationPress' ) ); ?></div>
-			<div class="post-next"><?php previous_posts_link( __( 'Newer posts &rarr;', 'FoundationPress' ) ); ?></div>
+			<div class="post-previous"><?php next_posts_link( __( '&larr; Older posts', 'starterslab' ) ); ?></div>
+			<div class="post-next"><?php previous_posts_link( __( 'Newer posts &rarr;', 'starterslab' ) ); ?></div>
 		</nav>
 	<?php } ?>
 

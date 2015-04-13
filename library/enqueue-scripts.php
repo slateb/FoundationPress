@@ -1,7 +1,7 @@
 <?php
 
-if ( ! function_exists( 'foundationpress_scripts' ) ) :
-	function foundationpress_scripts() {
+if ( ! function_exists( 'starterslab_scripts' ) ) :
+	function starterslab_scripts() {
 
 	// Enqueue Main Stylesheet
 	wp_enqueue_style( 'Main Stylesheet', get_stylesheet_directory_uri() . '/css/foundation.css' );
@@ -33,7 +33,7 @@ if ( ! function_exists( 'foundationpress_scripts' ) ) :
 
 	}
 
-	add_action( 'wp_enqueue_scripts', 'foundationpress_scripts' );
+	add_action( 'wp_enqueue_scripts', 'starterslab_scripts' );
 endif;
 
 ?>

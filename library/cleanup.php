@@ -7,39 +7,39 @@
 
 
 
-if ( ! function_exists( 'foundationpress_start_cleanup' ) ) :
-function foundationpress_start_cleanup() {
+if ( ! function_exists( 'starterslab_start_cleanup' ) ) :
+function starterslab_start_cleanup() {
 
 	// launching operation cleanup
-	add_action( 'init', 'foundationpress_cleanup_head' );
+	add_action( 'init', 'starterslab_cleanup_head' );
 
 	// remove WP version from RSS
-	add_filter( 'the_generator', 'foundationpress_remove_rss_version' );
+	add_filter( 'the_generator', 'starterslab_remove_rss_version' );
 
 	// remove pesky injected css for recent comments widget
-	add_filter( 'wp_head', 'foundationpress_remove_wp_widget_recent_comments_style', 1 );
+	add_filter( 'wp_head', 'starterslab_remove_wp_widget_recent_comments_style', 1 );
 
 	// clean up comment styles in the head
-	add_action( 'wp_head', 'foundationpress_remove_recent_comments_style', 1 );
+	add_action( 'wp_head', 'starterslab_remove_recent_comments_style', 1 );
 
 	// clean up gallery output in wp
-	add_filter( 'foundationpress_gallery_style', 'foundationpress_gallery_style' );
+	add_filter( 'starterslab_gallery_style', 'starterslab_gallery_style' );
 
 	// additional post related cleaning
-	add_filter( 'get_foundationpress_image_tag_class', 'foundationpress_image_tag_class', 0, 4 );
-	add_filter( 'get_image_tag', 'foundationpress_image_editor', 0, 4 );
+	add_filter( 'get_starterslab_image_tag_class', 'starterslab_image_tag_class', 0, 4 );
+	add_filter( 'get_image_tag', 'starterslab_image_editor', 0, 4 );
 	add_filter( 'the_content', 'img_unautop', 30 );
 
 }
-add_action( 'after_setup_theme','foundationpress_start_cleanup' );
+add_action( 'after_setup_theme','starterslab_start_cleanup' );
 endif;
 /**
  * Clean up head
  * ----------------------------------------------------------------------------
  */
 
-if ( ! function_exists( 'foundationpress_cleanup_head' ) ) :
-function foundationpress_cleanup_head() {
+if ( ! function_exists( 'starterslab_cleanup_head' ) ) :
+function starterslab_cleanup_head() {
 
 	// EditURI link
 	remove_action( 'wp_head', 'rsd_link' );
@@ -75,10 +75,10 @@ function foundationpress_cleanup_head() {
 	remove_action( 'wp_head', 'wp_generator' );
 
 	// Remove WP version from css
-	add_filter( 'style_loader_src', 'foundationpress_remove_wp_ver_css_js', 9999 );
+	add_filter( 'style_loader_src', 'starterslab_remove_wp_ver_css_js', 9999 );
 
 	// Remove WP version from scripts
-	add_filter( 'script_loader_src', 'foundationpress_remove_wp_ver_css_js', 9999 );
+	add_filter( 'script_loader_src', 'starterslab_remove_wp_ver_css_js', 9999 );
 
 	// Prevent unneccecary info from being displayed
 	add_filter( 'login_errors',create_function( '$a', 'return null;' ) );
@@ -87,13 +87,13 @@ function foundationpress_cleanup_head() {
 endif;
 
 // remove WP version from RSS
-if ( ! function_exists( 'foundationpress_remove_rss_version' ) ) :
-function foundationpress_remove_rss_version() { return ''; }
+if ( ! function_exists( 'starterslab_remove_rss_version' ) ) :
+function starterslab_remove_rss_version() { return ''; }
 endif;
 
-if ( ! function_exists( 'foundationpress_remove_wp_ver_css_js' ) ) :
+if ( ! function_exists( 'starterslab_remove_wp_ver_css_js' ) ) :
 // remove WP version from scripts
-function foundationpress_remove_wp_ver_css_js( $src ) {
+function starterslab_remove_wp_ver_css_js( $src ) {
 	if ( strpos( $src, 'ver=' ) ) {
 		$src = remove_query_arg( 'ver', $src ); }
 	return $src;
@@ -101,8 +101,8 @@ function foundationpress_remove_wp_ver_css_js( $src ) {
 endif;
 
 // remove injected CSS for recent comments widget
-if ( ! function_exists( 'foundationpress_remove_wp_widget_recent_comments_style' ) ) :
-function foundationpress_remove_wp_widget_recent_comments_style() {
+if ( ! function_exists( 'starterslab_remove_wp_widget_recent_comments_style' ) ) :
+function starterslab_remove_wp_widget_recent_comments_style() {
 	if ( has_filter( 'wp_head', 'wp_widget_recent_comments_style' ) ) {
 	  remove_filter( 'wp_head', 'wp_widget_recent_comments_style' );
 	}
@@ -110,8 +110,8 @@ function foundationpress_remove_wp_widget_recent_comments_style() {
 endif;
 
 // remove injected CSS from recent comments widget
-if ( ! function_exists( 'foundationpress_remove_recent_comments_style' ) ) :
-function foundationpress_remove_recent_comments_style() {
+if ( ! function_exists( 'starterslab_remove_recent_comments_style' ) ) :
+function starterslab_remove_recent_comments_style() {
 	global $wp_widget_factory;
 	if ( isset($wp_widget_factory->widgets['WP_Widget_Recent_Comments']) ) {
 	remove_action( 'wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style') );
@@ -120,8 +120,8 @@ function foundationpress_remove_recent_comments_style() {
 endif;
 
 // remove injected CSS from gallery
-if ( ! function_exists( 'foundationpress_gallery_style' ) ) :
-function foundationpress_gallery_style($css) {
+if ( ! function_exists( 'starterslab_gallery_style' ) ) :
+function starterslab_gallery_style($css) {
 	return preg_replace( "!<style type='text/css'>(.*?)</style>!s", '', $css );
 }
 endif;
@@ -135,10 +135,10 @@ endif;
 // Remove default inline style of wp-caption
 
 
-if ( ! function_exists( 'foundationpress_fixed_img_caption_shortcode' ) ) :
-add_shortcode( 'wp_caption', 'foundationpress_fixed_img_caption_shortcode' );
-add_shortcode( 'caption', 'foundationpress_fixed_img_caption_shortcode' );
-function foundationpress_fixed_img_caption_shortcode($attr, $content = null) {
+if ( ! function_exists( 'starterslab_fixed_img_caption_shortcode' ) ) :
+add_shortcode( 'wp_caption', 'starterslab_fixed_img_caption_shortcode' );
+add_shortcode( 'caption', 'starterslab_fixed_img_caption_shortcode' );
+function starterslab_fixed_img_caption_shortcode($attr, $content = null) {
 	if ( ! isset( $attr['caption'] ) ) {
 		if ( preg_match( '#((?:<a [^>]+>\s*)?<img [^>]+>(?:\s*</a>)?)(.*)#is', $content, $matches ) ) {
 			$content = $matches[1];
@@ -168,16 +168,16 @@ function foundationpress_fixed_img_caption_shortcode($attr, $content = null) {
 endif;
 
 // Clean the output of attributes of images in editor
-if ( ! function_exists( 'foundationpress_image_tag_class' ) ) :
-function foundationpress_image_tag_class($class, $id, $align, $size) {
+if ( ! function_exists( 'starterslab_image_tag_class' ) ) :
+function starterslab_image_tag_class($class, $id, $align, $size) {
 	$align = 'align' . esc_attr( $align );
 	return $align;
 }
 endif;
 
 // Remove width and height in editor, for a better responsive world.
-if ( ! function_exists( 'foundationpress_image_editor' ) ) :
-function foundationpress_image_editor($html, $id, $alt, $title) {
+if ( ! function_exists( 'starterslab_image_editor' ) ) :
+function starterslab_image_editor($html, $id, $alt, $title) {
 	return preg_replace(array(
 			'/\s+width="\d+"/i',
 			'/\s+height="\d+"/i',

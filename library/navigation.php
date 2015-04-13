@@ -15,8 +15,8 @@ register_nav_menus(array(
  * Left top bar
  * http://codex.wordpress.org/Function_Reference/wp_nav_menu
  */
-if ( ! function_exists( 'foundationpress_top_bar_l' ) ) {
-	function foundationpress_top_bar_l() {
+if ( ! function_exists( 'starterslab_top_bar_l' ) ) {
+	function starterslab_top_bar_l() {
 	    wp_nav_menu(array(
 	        'container' => false,                           // remove nav container
 	        'container_class' => '',                        // class of container
@@ -29,7 +29,7 @@ if ( ! function_exists( 'foundationpress_top_bar_l' ) ) {
 	        'link_after' => '',                             // after each link text
 	        'depth' => 5,                                   // limit the depth of the nav
 	        'fallback_cb' => false,                         // fallback function (see below)
-	        'walker' => new Foundationpress_Top_Bar_Walker()
+	        'walker' => new starterslab_Top_Bar_Walker()
 	    ));
 	}
 }
@@ -37,8 +37,8 @@ if ( ! function_exists( 'foundationpress_top_bar_l' ) ) {
 /**
  * Right top bar
  */
-if ( ! function_exists( 'foundationpress_top_bar_r' ) ) {
-	function foundationpress_top_bar_r() {
+if ( ! function_exists( 'starterslab_top_bar_r' ) ) {
+	function starterslab_top_bar_r() {
 	    wp_nav_menu(array(
 	        'container' => false,                           // remove nav container
 	        'container_class' => '',                        // class of container
@@ -51,7 +51,7 @@ if ( ! function_exists( 'foundationpress_top_bar_r' ) ) {
 	        'link_after' => '',                             // after each link text
 	        'depth' => 5,                                   // limit the depth of the nav
 	        'fallback_cb' => false,                         // fallback function (see below)
-	        'walker' => new Foundationpress_Top_Bar_Walker()
+	        'walker' => new starterslab_Top_Bar_Walker()
 	    ));
 	}
 }
@@ -59,8 +59,8 @@ if ( ! function_exists( 'foundationpress_top_bar_r' ) ) {
 /**
  * Mobile off-canvas
  */
-if ( ! function_exists( 'foundationpress_mobile_off_canvas' ) ) {
-	function foundationpress_mobile_off_canvas() {
+if ( ! function_exists( 'starterslab_mobile_off_canvas' ) ) {
+	function starterslab_mobile_off_canvas() {
 	    wp_nav_menu(array(
 	        'container' => false,                           // remove nav container
 	        'container_class' => '',                        // class of container
@@ -73,7 +73,7 @@ if ( ! function_exists( 'foundationpress_mobile_off_canvas' ) ) {
 	        'link_after' => '',                             // after each link text
 	        'depth' => 5,                                   // limit the depth of the nav
 	        'fallback_cb' => false,                         // fallback function (see below)
-	        'walker' => new Foundationpress_Offcanvas_Walker()
+	        'walker' => new starterslab_Offcanvas_Walker()
 	    ));
 	}
 }
@@ -85,14 +85,14 @@ if ( ! function_exists( 'foundationpress_mobile_off_canvas' ) ) {
  * 3) On your menu item, type 'has-form' in the CSS-classes field. Type 'button' in the XFN field
  * 4) Save Menu. Your menu item will now appear as a button in your top-menu
 */
-if ( ! function_exists( 'foundationpress_add_menuclass' ) ) {
-	function foundationpress_add_menuclass($ulclass) {
+if ( ! function_exists( 'starterslab_add_menuclass' ) ) {
+	function starterslab_add_menuclass($ulclass) {
 	    $find = array('/<a rel="button"/', '/<a title=".*?" rel="button"/');
 	    $replace = array('<a rel="button" class="button"', '<a rel="button" class="button"');
 
 	    return preg_replace( $find, $replace, $ulclass, 1 );
 	}
-	add_filter( 'wp_nav_menu','foundationpress_add_menuclass' );
+	add_filter( 'wp_nav_menu','starterslab_add_menuclass' );
 }
 
 ?>

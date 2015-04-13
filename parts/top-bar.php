@@ -6,8 +6,8 @@
             </li>
         </ul>
         <section class="top-bar-section">
-            <?php foundationpress_top_bar_l(); ?>
-            <?php foundationpress_top_bar_r(); ?>
+            <?php starterslab_top_bar_l(); ?>
+            <?php starterslab_top_bar_r(); ?>
         </section>
     </nav>
 </div>
