@@ -4,6 +4,12 @@ Author: Ole Fredrik Lie
 URL: http://olefredrik.com
 */
 
+/// Add CMB2
+if ( file_exists(  __DIR__ . '/library/cmb2/init.php' ) ) {
+  require_once  __DIR__ . '/library/cmb2/init.php';
+} elseif ( file_exists(  __DIR__ . '/library/CMB2/init.php' ) ) {
+  require_once  __DIR__ . '/library/CMB2/init.php';
+}
 
 // Various clean up functions
 require_once('library/cleanup.php');
